@@ -18,6 +18,7 @@ import java.util.Objects;
 @NoArgsConstructor
 @AllArgsConstructor
 @NamedQuery(name = "Product.findByName", query = "select p from Product p where p.name = :name")
+@Table(name="Product")
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

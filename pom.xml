@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.apex.eqp</groupId>
-    <artifactId>Inventory</artifactId>
+    <artifactId>Inventory-mine</artifactId>
     <version>0.0.2-SNAPSHOT</version>
     <name>inventory</name>
     <description>Demo project for Spring Boot</description>
@@ -23,6 +23,15 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
+        
+        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-validation -->
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-validation</artifactId>
+    <version>3.2.2</version>
+</dependency>
+
+        
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
