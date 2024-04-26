@@ -15,8 +15,6 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static java.util.function.Predicate.not;
-
 @Service
 @RequiredArgsConstructor
 public class ProductService {
@@ -51,31 +49,44 @@ public class ProductService {
         return inventoryRepository.findById(id);
     }
     
-    public boolean delete(Integer id) {
-        Optional<Product> p = inventoryRepository.findById(id);
-        if (p.isPresent()) {
-        	inventoryRepository.delete(p.get());
-        	return true;
-        }
-        else
-        	return false;
-        
+    public void delete(Integer id) {
+    	inventoryRepository.deleteById(id);  	
     }
     
-    public Product update(Integer id, Product product) {
-        Optional<Product> p = inventoryRepository.findById(id);
-        if (p.isPresent()) {
-        	Product updated = inventoryRepository.save(product);
-        	return updated;
-        }
-        else
-        	return null;
-        
+    public boolean deleteById(Integer id) {
+    	Optional<Product> p = inventoryRepository.findById(id);
+    	
+    	if (p.isPresent()) {
+    		inventoryRepository.delete(p.get());
+    		return true;    		
+    	}
+    	return false;
     }
     
-    public Product updateProduct(Product product) {
-    	System.out.println("************************ id" + product.getId());
-    	return inventoryRepository.save(product);
+    public boolean update(Integer id, Product p) {
+    	if (p==null || id == null)
+    		return false;
+    	
+    	Optional<Product> op = inventoryRepository.findById(id);
+    	if (op.isPresent()) {
+    		inventoryRepository.save(p);
+    		return true;
+    	}
+    	else
+    		return false;
+    }
+    
+    public boolean update(Product p) {
+    	if (p==null || p.getId() == null)
+    		return false;
+    	
+    	Optional<Product> op = inventoryRepository.findById(p.getId());
+    	if (op.isPresent()) {
+    		inventoryRepository.save(p);
+    		return true;
+    	}
+    	else
+    		return false;
     }
     
     public Collection<Product> findProductByName(String name) {

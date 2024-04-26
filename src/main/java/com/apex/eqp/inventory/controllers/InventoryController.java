@@ -54,7 +54,7 @@ public class InventoryController {
     
     @DeleteMapping("/{id}")
     ResponseEntity<String> deleteProduct(@PathVariable Integer id) {
-    	if (productService.delete(id))
+    	if (productService.deleteById(id))
     		return ResponseEntity.ok("Product has been deleted successfully");
     	
     	else {				
@@ -65,9 +65,9 @@ public class InventoryController {
     @PutMapping("/{id}")
     public ResponseEntity<Product> updateProduct(@PathVariable Integer id, @Valid @RequestBody Product newProduct) {
     	System.out.println("*********************** updateProduct");
-    	Product updated = productService.update(id, newProduct);
-    	if (updated != null)
-    		return ResponseEntity.ok().body(updated);
+    	Boolean updated = productService.update(id, newProduct);
+    	if (updated)
+    		return ResponseEntity.ok().body(newProduct);
     	
     	else 
     		return ResponseEntity.badRequest().body(newProduct);
@@ -76,9 +76,9 @@ public class InventoryController {
     @PutMapping
     public ResponseEntity<Product> updateProduct1(@RequestBody Product newProduct) {
     	System.out.println("*********************** updateProduct1");
-    	Product p = productService.updateProduct(newProduct);
+    	boolean updated = productService.update(newProduct);
     	
-    	return ResponseEntity.ok(p);
+    	return ResponseEntity.ok(newProduct);
     }
     
     @GetMapping("/name")

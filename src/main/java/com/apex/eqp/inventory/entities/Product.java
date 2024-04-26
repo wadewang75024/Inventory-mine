@@ -18,7 +18,7 @@ import java.util.Objects;
 @NoArgsConstructor
 @AllArgsConstructor
 @NamedQuery(name = "Product.findByName", query = "select p from Product p where p.name = :name")
-@Table(name="Product")
+@Table(name="PRODUCT")
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,6 +34,7 @@ public class Product {
     Double price;
     
     @NotNull
+    @Min(value=0, message="must be >= 0")
     Integer quantity;
 
     @Override
